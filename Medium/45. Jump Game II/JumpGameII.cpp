@@ -3,11 +3,14 @@
 
 class Solution {
 public:
-    static bool canJump(std::vector<int> &nums) {
+    static int jump(std::vector<int> &nums) {
+        int jumps_count = 0;
         int current_index = 0;
-        while ((nums[current_index] != 0) && (current_index < (nums.size() - 1))) {
-            if ((current_index + nums[current_index]) >= (nums.size() - 1)) {
-                current_index = static_cast<int>(nums.size() - 1);
+        int nums_last_index = static_cast<int>(nums.size()) - 1;
+        while (current_index < nums_last_index) {
+            if ((current_index + nums[current_index]) >= nums_last_index) {
+                ++jumps_count;
+                current_index = nums_last_index;
             } else {
                 int index_to_jump = current_index + nums[current_index];
                 int steps_count = 0;
@@ -18,18 +21,16 @@ public:
                         index_to_jump = i;
                     }
                 }
+                ++jumps_count;
                 current_index = index_to_jump;
             }
         }
-        if (current_index == (nums.size() - 1)) {
-            return true;
-        }
-        return false;
+        return jumps_count;
     }
 };
 
 int main() {
-    std::vector<int> nums = {3, 0, 8, 2, 0, 0, 1};
-    std::cout << Solution::canJump(nums) << std::endl;
+    std::vector<int> nums = {2, 3, 0, 1, 4};
+    std::cout << Solution::jump(nums) << std::endl;
     return 0;
 }
