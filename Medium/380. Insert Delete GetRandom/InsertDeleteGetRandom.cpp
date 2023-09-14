@@ -44,8 +44,6 @@ int main() {
     r_set.insert(5);
     r_set.insert(6);
     std::cout << r_set.getRandom() << std::endl;
-    r_set.remove(4);
-    r_set.remove(3);
     std::cout << r_set.getRandom() << std::endl;
     std::cout << r_set.getRandom() << std::endl;
     std::cout << r_set.getRandom() << std::endl;
