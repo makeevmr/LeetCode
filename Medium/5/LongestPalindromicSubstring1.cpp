@@ -74,8 +74,3 @@ private:
         return max_even_palindrome;
     }
 };
-
-int main() {
-    std::cout << Solution::longestPalindrome("cbbd") << '\n';
-    return 0;
-}
