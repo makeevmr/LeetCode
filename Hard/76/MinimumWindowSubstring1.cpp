@@ -13,7 +13,7 @@ is no such substring, return the empty string "". */
 
 class Solution {
 public:
-    static std::string minWindow(const std::string &s, const std::string t) {
+    static std::string minWindow(const std::string &s, const std::string &t) {
         std::vector<int> symbols_counter(128, 0);
         for (const auto &symbol : t) {
             ++symbols_counter[symbol];
