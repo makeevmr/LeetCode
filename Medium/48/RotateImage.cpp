@@ -2,6 +2,9 @@
 (clockwise).
 You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.
 DO NOT allocate another 2D matrix and do the rotation. */
+// Time complexity: O(n ^ 2), where n is size of matrix
+// Additional memory complexity: O(1)
+// Idea: for each cell we can figure out which 3 remaining cells it swaps with
 
 #include <iostream>
 #include <vector>
