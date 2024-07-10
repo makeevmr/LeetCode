@@ -7,7 +7,6 @@ public:
     static std::vector<std::string> summaryRanges(const std::vector<int> &nums) {
         std::size_t nums_size = nums.size();
         int left_border = nums_size > 0 ? nums[0] : 0;
-        bool is_left_set = false;
         std::vector<std::string> answer;
         for (std::size_t i = 1; i < nums_size; ++i) {
             if ((static_cast<long long int>(nums[i]) - static_cast<long long int>(nums[i - 1])) >
