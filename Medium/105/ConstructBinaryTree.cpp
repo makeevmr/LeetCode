@@ -2,7 +2,7 @@
 binary tree and inorder is the inorder traversal of the same tree, construct and return the
 binary tree.
 Time complexity: O(n)
-Additional memory complexity: O(max height of BST)
+Additional memory complexity: O(n)
 */
 
 #include <iostream>
