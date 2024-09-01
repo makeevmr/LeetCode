@@ -3,11 +3,11 @@
 
 class Solution {
 public:
-    static int longestSubarray(std::vector<int> &nums) {
+    static int longestSubarray(std::vector<int>& nums) {
         int max_size = 0;
         int prev_size = 0;
         int current_size = 0;
-        for (const auto &num : nums) {
+        for (const auto& num : nums) {
             if (num == 0) {
                 if ((prev_size + current_size) > max_size) {
                     max_size = prev_size + current_size;
