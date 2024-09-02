@@ -1,10 +1,20 @@
+/* A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and
+removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric
+characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+Time complexity: O(n)
+Additional memory complexity: O(1)
+Idea: use two pointers (left, right), move left pointer until valid symbol is met, move right
+pointer until valid symbol is met, than compare symbols
+*/
 #include <cctype>
 #include <iostream>
 #include <string>
 
 class Solution {
 public:
-    static bool isPalindrome(const std::string &s) {
+    static bool isPalindrome(const std::string& s) {
         int s_size = static_cast<int>(s.size());
         int left_index = 0;
         int right_index = static_cast<int>(s.size()) - 1;

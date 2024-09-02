@@ -1,3 +1,13 @@
+/* A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and
+removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric
+characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+Time complexity: O(n)
+Additional memory complexity: O(1)
+Idea: use two pointers (left, right), move left pointer until valid symbol is met, move right
+pointer until valid symbol is met, than compare symbols
+*/
 #include <iostream>
 #include <string>
 
@@ -35,9 +45,3 @@ public:
         return is_palindrome;
     }
 };
-
-int main() {
-    std::string s = ".,";
-    std::cout << Solution::isPalindrome(s) << std::endl;
-    return 0;
-}
