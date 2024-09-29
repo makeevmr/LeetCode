@@ -7,7 +7,6 @@ Idea: use unordered_map to store all possible values and their indexes, iterate 
 value target - nums[i] in map, return pair of indexes
 */
 
-#include <iostream>
 #include <unordered_map>
 #include <vector>
 
@@ -31,18 +30,3 @@ public:
         return index_pair;
     }
 };
-
-int main() {
-    // std::vector<int> nums = {2, 7, 11, 15};
-    // int target = 9;
-    // std::vector<int> nums = {3, 2, 4};
-    // int target = 6;
-    std::vector<int> nums = {3, 3};
-    int target = 6;
-    std::vector<int> answer = Solution::twoSum(nums, target);
-    for (const auto &numb : answer) {
-        std::cout << numb << ' ';
-    }
-    std::cout << '\n';
-    return 0;
-}
