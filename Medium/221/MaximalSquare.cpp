@@ -23,20 +23,25 @@ public:
             max_area = std::max(max_area, square_size[column]);
         }
         for (int row = 1; row < rows; ++row) {
+            int curr_diag = -1;
             int prev_diag = square_size[0];
             if (matrix[row][0] == '1') {
                 square_size[0] = 1;
+                max_area = std::max(max_area, square_size[0]);
+            } else {
+                square_size[0] = 0;
             }
-            max_area = std::max(max_area, square_size[0]);
             for (int column = 1; column < columns; ++column) {
+                int& curr_area = square_size[column];
+                curr_diag = curr_area;
                 if (matrix[row][column] == '1') {
-                    int& curr_area = square_size[column];
-                    curr_area = std::min(std::min(square_size[column - 1], square_size[column]),
-                                         prev_diag) +
-                                1;
+                    curr_area =
+                        std::min(std::min(square_size[column - 1], curr_area), prev_diag) + 1;
                     max_area = std::max(max_area, curr_area * curr_area);
+                } else {
+                    curr_area = 0;
                 }
-                prev_diag = square_size[column];
+                prev_diag = curr_diag;
             }
         }
         return max_area;
@@ -44,11 +49,20 @@ public:
 };
 
 int main() {
-    std::vector<std::vector<char>> matrix = {{'1', '1', '1', '1', '0'},
-                                             {'1', '1', '1', '1', '0'},
-                                             {'1', '1', '1', '1', '1'},
-                                             {'1', '1', '1', '1', '1'},
-                                             {'0', '0', '1', '1', '1'}};
+    // std::vector<std::vector<char>> matrix = {{'1', '1', '1', '1', '0'},
+    //                                          {'1', '1', '1', '1', '0'},
+    //                                          {'1', '1', '1', '1', '1'},
+    //                                          {'1', '1', '1', '1', '1'},
+    //                                          {'0', '0', '1', '1', '1'}};
+    // std::vector<std::vector<char>> matrix = {{'1', '0', '1', '0', '0'},
+    //                                          {'1', '0', '1', '1', '1'},
+    //                                          {'1', '1', '1', '1', '1'},
+    //                                          {'1', '0', '0', '1', '0'}};
+    std::vector<std::vector<char>> matrix = {{'1', '1', '1', '1', '1', '1', '1', '1'},
+                                             {'1', '1', '1', '1', '1', '1', '1', '0'},
+                                             {'1', '1', '1', '1', '1', '1', '1', '0'},
+                                             {'1', '1', '1', '1', '1', '0', '0', '0'},
+                                             {'0', '1', '1', '1', '1', '0', '0', '0'}};
     std::cout << Solution::maximalSquare(matrix) << '\n';
     return 0;
 }
