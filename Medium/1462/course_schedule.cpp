@@ -44,16 +44,17 @@ public:
             for (int i = 0; i < num_courses; ++i) {
                 if ((graph_reachability[node] >> i &
                      std::bitset<kMaxCourses>(1))
-                        .to_ullong() == 1ULL) {
+                        .any()) {
                     graph_reachability[node] |= graph_reachability[i];
                 }
             }
         }
-        std::vector<bool> answer;
-        for (const auto& query : queries) {
-            answer.push_back(((graph_reachability[query[0]] >> query[1]) &
-                              std::bitset<kMaxCourses>(1))
-                                 .to_ullong() == 1ULL);
+        std::size_t queries_size = queries.size();
+        std::vector<bool> answer(queries_size, false);
+        for (std::size_t i = 0; i < queries_size; ++i) {
+            answer[i] = ((graph_reachability[queries[i][0]] >> queries[i][1]) &
+                         std::bitset<kMaxCourses>(1))
+                            .any();
         }
         return answer;
     }
