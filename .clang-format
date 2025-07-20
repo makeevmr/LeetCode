@@ -6,12 +6,13 @@ Language: Cpp
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLambdasOnASingleLine: Empty
+IncludeBlocks: Preserve
 SortIncludes: false
 
 ColumnLimit: 80
 AccessModifierOffset: -4
 AlwaysBreakTemplateDeclarations: true
-NamespaceIndentation: All
+NamespaceIndentation: None
 
 DerivePointerAlignment: false
 PointerAlignment: Left
