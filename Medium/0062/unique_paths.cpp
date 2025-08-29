@@ -13,13 +13,13 @@ The test cases are generated so that the answer will be less than or equal to 2
 
 class Solution {
 public:
-    [[nodiscard]] static int uniquePaths(const int& m, const int& n) {
-        std::vector<int> unique_paths(n, 1);
-        for (int _ = 1; _ < m; ++_) {
-            for (int i = 1; i < n; ++i) {
-                unique_paths[i] += unique_paths[i - 1];
-            }
-        }
-        return unique_paths.back();
+  [[nodiscard]] static int uniquePaths(const int& m, const int& n) {
+    std::vector<int> unique_paths(n, 1);
+    for (int _ = 1; _ < m; ++_) {
+      for (int i = 1; i < n; ++i) {
+        unique_paths[i] += unique_paths[i - 1];
+      }
     }
+    return unique_paths.back();
+  }
 };

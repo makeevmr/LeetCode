@@ -1,5 +1,5 @@
-/* Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the
-input string is valid.
+/* Given a string s containing just the characters '(', ')', '{', '}', '[' and
+']', determine if the input string is valid.
 
 An input string is valid if:
 
@@ -17,42 +17,42 @@ Idea: use stack to store all open brackets
 
 class Solution {
 public:
-    static bool isValid(const std::string &s) {
-        std::stack<char> opened_brackets;
-        for (const auto &bracket : s) {
-            if (bracket == '(' || bracket == '[' || bracket == '{') {
-                opened_brackets.push(bracket);
-            } else {
-                switch (bracket) {
-                case ')':
-                    if (opened_brackets.empty() || opened_brackets.top() != '(') {
-                        return false;
-                    }
-                    opened_brackets.pop();
-                    break;
-                case ']':
-                    if (opened_brackets.empty() || opened_brackets.top() != '[') {
-                        return false;
-                    }
-                    opened_brackets.pop();
-                    break;
-                case '}':
-                    if (opened_brackets.empty() || opened_brackets.top() != '{') {
-                        return false;
-                    }
-                    opened_brackets.pop();
-                    break;
-                }
+  static bool isValid(const std::string& s) {
+    std::stack<char> opened_brackets;
+    for (const auto& bracket : s) {
+      if (bracket == '(' || bracket == '[' || bracket == '{') {
+        opened_brackets.push(bracket);
+      } else {
+        switch (bracket) {
+          case ')':
+            if (opened_brackets.empty() || opened_brackets.top() != '(') {
+              return false;
             }
+            opened_brackets.pop();
+            break;
+          case ']':
+            if (opened_brackets.empty() || opened_brackets.top() != '[') {
+              return false;
+            }
+            opened_brackets.pop();
+            break;
+          case '}':
+            if (opened_brackets.empty() || opened_brackets.top() != '{') {
+              return false;
+            }
+            opened_brackets.pop();
+            break;
         }
-        return opened_brackets.empty();
+      }
     }
+    return opened_brackets.empty();
+  }
 };
 
 int main() {
-    // std::string s = "()";
-    // std::string s = "()[]{}";
-    std::string s = "(}";
-    std::cout << Solution::isValid(s) << '\n';
-    return 0;
+  // std::string s = "()";
+  // std::string s = "()[]{}";
+  std::string s = "(}";
+  std::cout << Solution::isValid(s) << '\n';
+  return 0;
 }

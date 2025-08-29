@@ -20,31 +20,31 @@ Idea: use bfs to visit all rooms that can be visited
 
 class Solution {
 public:
-    [[nodiscard]] static bool canVisitAllRooms(
-        const std::vector<std::vector<int>>& rooms) {
-        return bfs(rooms) == static_cast<int>(rooms.size());
-    }
+  [[nodiscard]] static bool canVisitAllRooms(
+      const std::vector<std::vector<int>>& rooms) {
+    return bfs(rooms) == static_cast<int>(rooms.size());
+  }
 
 private:
-    // BFS returns number of visited nodes (rooms)
-    [[nodiscard]] static int bfs(
-        const std::vector<std::vector<int>>& rooms) noexcept {
-        int visited_rooms = 0;
-        std::queue<int> rooms_to_visit;
-        std::vector<bool> visited(static_cast<int>(rooms.size()), false);
-        visited[0] = true;
-        rooms_to_visit.push(0);
-        while (!rooms_to_visit.empty()) {
-            int new_room = rooms_to_visit.front();
-            rooms_to_visit.pop();
-            ++visited_rooms;
-            for (const auto& key : rooms[new_room]) {
-                if (!visited[key]) {
-                    rooms_to_visit.push(key);
-                    visited[key] = true;
-                }
-            }
+  // BFS returns number of visited nodes (rooms)
+  [[nodiscard]] static int bfs(
+      const std::vector<std::vector<int>>& rooms) noexcept {
+    int visited_rooms = 0;
+    std::queue<int> rooms_to_visit;
+    std::vector<bool> visited(static_cast<int>(rooms.size()), false);
+    visited[0] = true;
+    rooms_to_visit.push(0);
+    while (!rooms_to_visit.empty()) {
+      int new_room = rooms_to_visit.front();
+      rooms_to_visit.pop();
+      ++visited_rooms;
+      for (const auto& key : rooms[new_room]) {
+        if (!visited[key]) {
+          rooms_to_visit.push(key);
+          visited[key] = true;
         }
-        return visited_rooms;
+      }
     }
+    return visited_rooms;
+  }
 };

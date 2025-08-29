@@ -21,64 +21,64 @@ Idea: iterate through edges merge sets if vertices are in different sets
 
 class DSU {
 public:
-    explicit DSU(int n)
-        : parent_(),
-          vertices_(n, 1),
-          edges_(n, 0) {
-        parent_.reserve(n);
-        for (int i = 0; i < n; ++i) {
-            parent_.push_back(i);
-        }
+  explicit DSU(int n)
+      : parent_(),
+        vertices_(n, 1),
+        edges_(n, 0) {
+    parent_.reserve(n);
+    for (int i = 0; i < n; ++i) {
+      parent_.push_back(i);
     }
+  }
 
-    [[nodiscard]] int findSet(int vertex) noexcept {
-        if (parent_[vertex] == vertex) {
-            return vertex;
-        }
-        return parent_[vertex] = findSet(parent_[vertex]);
+  [[nodiscard]] int findSet(int vertex) noexcept {
+    if (parent_[vertex] == vertex) {
+      return vertex;
     }
+    return parent_[vertex] = findSet(parent_[vertex]);
+  }
 
-    void unionSets(int vertex1, int vertex2) noexcept {
-        int set1 = findSet(vertex1);
-        int set2 = findSet(vertex2);
-        if (set1 != set2) {
-            if (vertices_[set1] < vertices_[set2]) {
-                std::swap(set1, set2);
-            }
-            parent_[set2] = set1;
-            vertices_[set1] += vertices_[set2];
-            edges_[set1] += edges_[set2] + 1;
-        } else {
-            ++edges_[set1];
-        }
+  void unionSets(int vertex1, int vertex2) noexcept {
+    int set1 = findSet(vertex1);
+    int set2 = findSet(vertex2);
+    if (set1 != set2) {
+      if (vertices_[set1] < vertices_[set2]) {
+        std::swap(set1, set2);
+      }
+      parent_[set2] = set1;
+      vertices_[set1] += vertices_[set2];
+      edges_[set1] += edges_[set2] + 1;
+    } else {
+      ++edges_[set1];
     }
+  }
 
-    [[nodiscard]] int completeComponentsAmount() const noexcept {
-        int complete_components = 0;
-        for (int i = 0, total_vertices = static_cast<int>(parent_.size());
-             i < total_vertices; ++i) {
-            if (parent_[i] == i &&
-                (vertices_[i] * (vertices_[i] - 1) / 2 == edges_[i])) {
-                ++complete_components;
-            }
-        }
-        return complete_components;
+  [[nodiscard]] int completeComponentsAmount() const noexcept {
+    int complete_components = 0;
+    for (int i = 0, total_vertices = static_cast<int>(parent_.size());
+         i < total_vertices; ++i) {
+      if (parent_[i] == i &&
+          (vertices_[i] * (vertices_[i] - 1) / 2 == edges_[i])) {
+        ++complete_components;
+      }
     }
+    return complete_components;
+  }
 
 private:
-    std::vector<int> parent_;
-    std::vector<int> vertices_;
-    std::vector<int> edges_;
+  std::vector<int> parent_;
+  std::vector<int> vertices_;
+  std::vector<int> edges_;
 };
 
 class Solution {
 public:
-    [[nodiscard]] static int countCompleteComponents(
-        int n, const std::vector<std::vector<int>>& edges) {
-        DSU graph_components(n);
-        for (const auto& edge : edges) {
-            graph_components.unionSets(edge[0], edge[1]);
-        }
-        return graph_components.completeComponentsAmount();
+  [[nodiscard]] static int countCompleteComponents(
+      int n, const std::vector<std::vector<int>>& edges) {
+    DSU graph_components(n);
+    for (const auto& edge : edges) {
+      graph_components.unionSets(edge[0], edge[1]);
     }
+    return graph_components.completeComponentsAmount();
+  }
 };

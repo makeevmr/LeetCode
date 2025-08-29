@@ -25,36 +25,36 @@ staring node
 
 class Solution {
 public:
-    [[nodiscard]] static int closestMeetingNode(const std::vector<int>& edges,
-                                                int node1, int node2) {
-        const int total_nodes = static_cast<int>(edges.size());
-        std::vector<bool> visited1(total_nodes, false);
-        std::vector<int> distance1(total_nodes, 0);
-        std::vector<bool> visited2(total_nodes, false);
-        std::vector<int> distance2(total_nodes, 0);
-        dfs(edges, visited1, distance1, node1);
-        dfs(edges, visited2, distance2, node2);
-        int answer = -1;
-        int min_dist = std::numeric_limits<int>::max();
-        for (int i = 0; i < total_nodes; ++i) {
-            if (visited1[i] && visited2[i] &&
-                min_dist > std::max(distance1[i], distance2[i])) {
-                answer = i;
-                min_dist = std::max(distance1[i], distance2[i]);
-            }
-        }
-        return answer;
+  [[nodiscard]] static int closestMeetingNode(const std::vector<int>& edges,
+                                              int node1, int node2) {
+    const int total_nodes = static_cast<int>(edges.size());
+    std::vector<bool> visited1(total_nodes, false);
+    std::vector<int> distance1(total_nodes, 0);
+    std::vector<bool> visited2(total_nodes, false);
+    std::vector<int> distance2(total_nodes, 0);
+    dfs(edges, visited1, distance1, node1);
+    dfs(edges, visited2, distance2, node2);
+    int answer = -1;
+    int min_dist = std::numeric_limits<int>::max();
+    for (int i = 0; i < total_nodes; ++i) {
+      if (visited1[i] && visited2[i] &&
+          min_dist > std::max(distance1[i], distance2[i])) {
+        answer = i;
+        min_dist = std::max(distance1[i], distance2[i]);
+      }
     }
+    return answer;
+  }
 
 private:
-    static void dfs(const std::vector<int>& edges, std::vector<bool>& visited,
-                    std::vector<int>& distance, int start_node) noexcept {
-        int curr_dist = 0;
-        int curr_node = start_node;
-        while (curr_node != -1 && !visited[curr_node]) {
-            distance[curr_node] = curr_dist++;
-            visited[curr_node] = true;
-            curr_node = edges[curr_node];
-        }
+  static void dfs(const std::vector<int>& edges, std::vector<bool>& visited,
+                  std::vector<int>& distance, int start_node) noexcept {
+    int curr_dist = 0;
+    int curr_node = start_node;
+    while (curr_node != -1 && !visited[curr_node]) {
+      distance[curr_node] = curr_dist++;
+      visited[curr_node] = true;
+      curr_node = edges[curr_node];
     }
+  }
 };

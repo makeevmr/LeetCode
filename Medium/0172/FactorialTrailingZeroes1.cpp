@@ -8,7 +8,7 @@ Idea: count 5 factors in n!
 
 class Solution {
 public:
-    [[nodiscard]] static int trailingZeroes(int n) {
-        return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
-    }
+  [[nodiscard]] static int trailingZeroes(int n) {
+    return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
+  }
 };
