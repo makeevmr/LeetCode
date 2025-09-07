@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cctype>
 #include <string>
 #include <cctype>
@@ -15,7 +14,11 @@ private:
     std::string decoded_str;
     std::string num;
     while (ind < s_size && s[ind] != ']') {
-      while ((ind < s_size) && (std::isdigit(s[ind]) != 0)) {
+      while (ind < s_size && std::isalpha(s[ind]) != 0) {
+        decoded_str.push_back(s[ind]);
+        ++ind;
+      }
+      while (ind < s_size && std::isdigit(s[ind]) != 0) {
         num.push_back(s[ind]);
         ++ind;
       }
@@ -26,11 +29,6 @@ private:
           decoded_str.append(new_str);
         }
         num.clear();
-      } else {
-        while (ind < s_size && std::isalpha(s[ind]) != 0) {
-          decoded_str.push_back(s[ind]);
-          ++ind;
-        }
       }
     }
     return std::pair<std::string, size_t>{decoded_str, ind + 1};
