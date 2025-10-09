@@ -8,7 +8,9 @@ public:
     for (int i = 2; i * i <= num; ++i) {
       if (num % i == 0) {
         divisors_sum += i;
-        divisors_sum += num / i;
+        if (i * i != num) {
+          divisors_sum += num / i;
+        }
       }
     }
     return num == divisors_sum;
