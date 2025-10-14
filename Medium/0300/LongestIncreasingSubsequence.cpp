@@ -1,6 +1,4 @@
 #include <iostream>
-#include <iterator>
-#include <string>
 #include <vector>
 
 class Solution {
@@ -13,9 +11,6 @@ public:
       if (answer.back() < nums[i]) {
         answer.push_back(nums[i]);
       } else {
-        // int left_border =
-        //     lower_bound(answer.begin(), answer.end(), nums[i]) -
-        //     answer.begin();
         int left_border = 0;
         int right_border = static_cast<int>(answer.size()) - 1;
         while (left_border < right_border) {
